@@ -83,7 +83,7 @@ use Pod::Abstract::BuildNode qw(node nodes);
 #	  ...
 #  }
 #  
-# That procudes the same output! It means the dollar sign of the first example is a symbol which means "scalar".
+# That produces the same output! It means the dollar sign of the first example is a symbol which means "scalar".
 #
 #  sub foo{ # ($)
 #	  ...
@@ -147,7 +147,7 @@ use Pod::Abstract::BuildNode qw(node nodes);
 #  ...
 #  }
 #
-# procudes:
+# produces:
 #
 #   my $lista | \$refb = $self->foo(\@list | $text, $flag);
 #
@@ -176,7 +176,7 @@ use Pod::Abstract::BuildNode qw(node nodes);
 #  }
 #
 #
-# procudes:
+# produces:
 #
 #   my $string = $self->foo($text);
 #
@@ -385,7 +385,7 @@ my $file=shift or die "need filename";
 }
 
 
-## scans a directoy recoursively for pm files and may
+## scans a directoy recursively for pm files and may
 ## generate pod of them.
 ##
 ## You can also set the flag updateonly to build new pod
@@ -409,7 +409,7 @@ my $poddir=$v->{'poddir'};
 my $border=$self->getBorderString();
 
 
-	my @dir = $self->_getPodFilesRecoursive($directory);
+	my @dir = $self->_getPodFilesrecursive($directory);
 
 
 	foreach my $filein (@dir){
@@ -452,13 +452,13 @@ my $border=$self->getBorderString();
 
 
 
-sub _getPodFilesRecoursive{
+sub _getPodFilesrecursive{
 my $self=shift;
 my $path=shift;
 my %para=@_;
 my @files;
 
-	@files=$self->_getFilesRecoursiveAll($path);
+	@files=$self->_getFilesrecursiveAll($path);
 	$self->_filterFileArray(\@files,ext=>'pm',path=>$path);
 	@files=sort @files;
 
@@ -466,7 +466,7 @@ return wantarray ? @files : \@files;
 }
 
 
-sub _getFilesRecoursiveAll{
+sub _getFilesrecursiveAll{
 my $self=shift;
 my $path=shift;
 my %para;
@@ -481,7 +481,7 @@ my @fm;
 
 	foreach my $d (@f){
 		if (-d $d){
-		push @fm,$self->_getFilesRecoursiveAll($d);
+		push @fm,$self->_getFilesrecursiveAll($d);
 		}
 	}
 	push @f,@fm;
@@ -1784,7 +1784,7 @@ The example looks simple, but the engine does more than you think. Please have a
   ...
  }
  
-That procudes the same output! It means the dollar sign of the first example is a symbol which means "scalar".
+That produces the same output! It means the dollar sign of the first example is a symbol which means "scalar".
 
  sub foo{ # ($)
   ...
@@ -1848,7 +1848,7 @@ There is also a way to expain that a value A OR B is expected. See here:
  ...
  }
 
-procudes:
+produces:
 
   my $lista | \$refb = $self->foo(\@list | $text, $flag);
 
@@ -1877,7 +1877,7 @@ Added some hacks to teach this tool also some doxygen parametes. For example:
  }
 
 
-procudes:
+produces:
 
   my $string = $self->foo($text);
 
@@ -1944,7 +1944,7 @@ Returns the pod formated text.s
 
  $self->readDirectory($directory, updateonly => $scalar, pod => $scalar, verbose => $scalar);
 
-scans a directoy recoursively for pm files and may
+scans a directoy recursively for pm files and may
 generate pod of them.
 
 You can also set the flag updateonly to build new pod
